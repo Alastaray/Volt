@@ -1,0 +1,114 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+header>div{
+    height: 20vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.logo{
+    width: 65vw;
+    height: 65vh;
+    background-image: url('/images/front/LOGO.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}    
+.menu{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.menu li{
+    padding-right: 60px;
+}
+.menu li a{
+    color: white;
+    text-decoration: none;
+    font-size: 40px;
+    padding: 10px 20px 10px 20px;
+}
+.menu li a:hover{
+    background-color: white;
+    color: black;
+}
+#reg-logo{
+    background-color: black;
+    width: 70px;
+    height: 70px;
+    background-image: url('/images/page/reg.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    bottom: 15px;
+}
+
+.bg{
+    position: relative;
+    height: 55vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    z-index: 1;
+}
+.ac-dc{
+    height: 50vh;
+    width: 100%;
+    background-image: url('/images/front/acdc.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+footer .search{
+    
+    max-height: 20vh;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+} 
+footer .search-panel{ 
+    margin-right: 100px;  
+}
+footer button{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 20px;
+    border: 0;
+    background-color: black;
+    color: white;
+    height: 3vh;
+}
+footer button:hover{
+    background-color: white;
+    color: black;
+}
+.logo-min{
+    width: 150px;
+    height: 100px;
+    background-image: url('/images/page/LOGOmini.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-left: 100px;
+}

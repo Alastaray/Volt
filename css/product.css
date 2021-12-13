@@ -1,0 +1,91 @@
+.adminprod{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    height: 45vh;
+}
+.product {  
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+}
+.product .card{
+    position: relative;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.product .img{
+    width: 100%;
+    height: 100%;
+    /* background-image: url('/image/selectguitars/guitare.png'); 
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; */
+    box-shadow: 2px 0px 4px 2px black;
+    
+}
+
+.product .price {
+    height: 10%;
+    width: 100%;
+    font-size: 30px;
+    background-color: black;
+    color: white;
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 2px 0px 4px 0px black;
+}
+
+.product .name {
+    margin-top: 10px;
+    font-size: 25px;
+    background-color: black;
+    color: white;
+    height: 15%;
+    width: 80%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#more{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    height: 12%;
+    display: none;
+    position: relative; 
+    position: absolute;  
+    font-size: 25px;
+    z-index: 999;   
+    border: 0;
+    color: white;
+    background-color: black;
+    border-radius: 15px;
+}
+
+.product .price div {
+    margin-left: 10px;
+}
+.product .card:hover #more{
+    display: block;
+} 
+.product .card:hover .img{
+    opacity: 0.3; 
+}
+#more:hover{
+    color: black;
+    background-color: white;
+}
+.bg {
+    display: none;
+    background-color: white;
+}

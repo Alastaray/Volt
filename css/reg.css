@@ -1,0 +1,119 @@
+#eclipse{
+    display: none;
+    position: relative;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 999;
+
+}
+#register{
+    display: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    position: relative;
+    position: absolute;
+    left: 32%;
+    bottom: 20%;
+    height: 570px;
+    width: 630px;
+    z-index: 99;
+    border: 2px solid black;
+    background-color: white;
+}
+.shape{
+    padding-left: 5px;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+}
+#register>h1{
+    
+    width: 560px;
+    font-size: 32px;
+    border-bottom: 2px solid black;
+    padding: 15px 15px 15px 30px;
+}
+#register .form
+{
+    font-size: 20px;
+    padding: 20px;
+    width: 300px;
+}
+#register .form>fieldset{
+    padding-bottom: 20px;
+}
+.input{
+    display: flex;
+    align-items: center;
+}
+input{
+    margin-top: 5px;
+    height: 25px;
+    width: 270px;
+}
+.error{
+    margin-right: 5px;
+    height: 20px;
+    width: 10px;
+    background-color: red;  
+}
+.success{  
+    margin-right: 5px;
+    height: 20px;
+    width: 10px;
+    background-color: green;  
+}
+input, button{
+    border: 2px solid black;
+}
+#registered{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+    width: 280px;
+    height: 40px;
+    margin-bottom: 5px;
+    background-color: white;
+}
+.form a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    padding-left: 50px;
+}
+.line{
+    margin-top: 10px;
+}
+.line div{
+    width: 1px;
+    height: 220px;
+    border-left: 1px solid black;
+}
+.line p{
+    position: relative;
+    right: 15px;
+}
+.or, .line{
+    padding: 10px;
+}
+.or h2{
+    
+    padding: 10px 0px 10px 0px;
+    width: 220px;
+}
+
+.google{
+    width: 220px;
+    height: 40px;
+    background-color: black;
+}
+.vk{
+    margin-top: 15px;
+    width: 220px;
+    height: 40px;
+    background-color: black;
+}
