@@ -1,11 +1,13 @@
 .adminprod{
-    margin: 20px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
-    height: 45vh;
+    
+    height: 100%;
+    width: 85%;
 }
 .product {  
-    margin: 20px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,12 +29,7 @@
 .product .img{
     width: 100%;
     height: 100%;
-    /* background-image: url('/image/selectguitars/guitare.png'); 
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat; */
-    box-shadow: 2px 0px 4px 2px black;
-    
+    box-shadow: 2px 0px 4px 2px black; 
 }
 
 .product .price {
@@ -85,7 +82,30 @@
     color: black;
     background-color: white;
 }
+
+.guitars{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45vh;
+}
+.guitars img{
+    height: 50%;
+    width: 100%;
+}
+.pointer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 10%;
+}
+
+.pointer:hover{
+    background-color: rgba(211, 211, 211, 0.493);
+}
+
 .bg {
     display: none;
-    background-color: white;
 }
