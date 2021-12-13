@@ -12,10 +12,10 @@
     ?>
         </div>
         
-        <div class="search-panel">
-            <input placeholder="Я ищу..." name="insearch" type="text">
-            <button name="search">Искать</button>
-        </div>
+        <form class="search-panel">
+            <input placeholder="Я ищу..." name="search" type="text">
+            <button>Искать</button>
+        </form>
     </div>
 
 

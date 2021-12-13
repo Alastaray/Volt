@@ -1,7 +1,21 @@
 
 <?php
     $rowscount=0;
-    $c=$this->db->queryOne("SELECT COUNT(*) as 'count' FROM `guitars`");
+    $params=[];
+    if(isset($_REQUEST["search"]))$search = $_REQUEST["search"];
+    $sql_search = "";
+    if($search){
+        $sql_search.="WHERE `name` LIKE '".$search."%'"." OR ".
+             "`neck_material` LIKE '".$search."%'"." OR ".
+            "`price` = '".$search."' OR ".
+            "`scale` = '".$search."' OR ".
+            "`number_frets` = '".$search."' OR ".
+            "`number_strings` = '".$search."'";
+        $params["search"]=$search;
+    } 
+    $sql_count="SELECT COUNT(*) as 'count' FROM `guitars` ".$sql_search;
+  
+    $c=$this->db->queryOne($sql_count);
     if($c)$rowscount=$c["count"];
     $page=1;
     if(isset($_REQUEST["page"])&&is_numeric($_REQUEST["page"])&&$_REQUEST["page"]>=1)$page=$_REQUEST["page"];
@@ -10,10 +24,11 @@
         "rows"=>$rowscount,
         "limit"=>$limit,
         "limitPages"=>5,
-        "page"=>$page      
+        "page"=>$page,
+        "params"=>$params
     ]);
-    $sql="SELECT * FROM guitars ";
-    $sql.= "LIMIT ".$pag->GetFirstRow().", ". $pag->GetLimit();
+    $sql="SELECT * FROM guitars ".$sql_search;
+    $sql.= " LIMIT ".$pag->GetFirstRow().", ". $pag->GetLimit();
     $rows = ($this->db)->queryRows($sql); 
     $pagination= $pag->show();
     $active = "?page=";
