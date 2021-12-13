@@ -13,7 +13,6 @@ class App {
         $this->db = new DB($config['db']);
 
         if (!$this->db->IsConnect()) {
-            echo("neeeeeeeeeeeeet");
             $this->Error();
             return;
         }

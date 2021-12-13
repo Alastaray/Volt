@@ -1,7 +1,7 @@
 <?php
 require_once("include/db.php");
 require_once("include/app.php");
-
+require_once("include/pagination.php");
 
 (new App())->Run([
     'db' => [
