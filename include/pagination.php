@@ -2,6 +2,7 @@
 class Pagination
 {
     private $options = [];
+    private $active;
     public function __construct($options) {
         $this->options = $options;
     }
@@ -21,6 +22,9 @@ class Pagination
 
     public function GetLimit() {
         return $this->options['limit'];
+    }
+    public function GetActive() {
+        return $this->active;
     }
 
     public function GetPage() {
@@ -54,7 +58,7 @@ class Pagination
             if ($first < 1) $first = 1;
         }
         if ($first > 1) {
-            $str .= "<a href='?page=1&".$this->BuildParams()."'>Первая</a>";
+            $str .= "<a href='?page=1&".$this->BuildParams()."'>1</a>";
         }
         if ($first > 2) {
             $str .= "<a href='?page=".($first-1)."&".$this->BuildParams()."'>...</a>";
@@ -62,6 +66,7 @@ class Pagination
         for ($i=$first; $i <= $last; $i++) {
             if ($i == $page) {
                 $str .= "<a class='active' href='?page={$i}&".$this->BuildParams()."'>{$i}</a>";
+                $this->active = $i;
             } else {
                 $str .= "<a href='?page={$i}&".$this->BuildParams()."'>{$i}</a>";
             }
@@ -70,7 +75,7 @@ class Pagination
             $str .= "<a href='?page=".($last+1)."&".$this->BuildParams()."'>...</a>";
         }
         if ($last < $pages) {
-            $str .= "<a href='?page={$pages}&".$this->BuildParams()."'>Последняя</a>";
+            $str .= "<a href='?page={$pages}&".$this->BuildParams()."'>".$pages."</a>";
         }
         return $str;
     }

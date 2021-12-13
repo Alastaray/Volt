@@ -62,7 +62,6 @@ header>div{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5px;
     z-index: 1;
 }
 .ac-dc{
@@ -76,19 +75,18 @@ header>div{
 footer{
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 100%;  
 }
 footer .search{
     
-    max-height: 20vh;
+    max-height: 25vh;
     background-color: black;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    
+    align-items: center; 
 } 
 footer .search-panel{ 
-    margin-right: 100px;  
+    margin-right: 50px;  
 }
 footer button{
     font-family: 'Courier New', Courier, monospace;
@@ -105,10 +103,31 @@ footer button:hover{
 }
 .logo-min{
     width: 150px;
-    height: 100px;
+    height: 120px;
     background-image: url('/images/page/LOGOmini.png');
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    margin-left: 100px;
+    margin-left: 50px;
+}
+footer .pag{
+    margin-left: 30px;
+}
+footer .pag a{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px;
+    padding: 7px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+}
+footer .pag .active{
+    color: white;
+    background-color: black;
+}
+footer .pag a:hover{
+    color: white;
+    background-color: black;
 }

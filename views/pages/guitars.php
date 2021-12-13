@@ -9,17 +9,19 @@
     $pag = new Pagination([       
         "rows"=>$rowscount,
         "limit"=>$limit,
-        "limitPages"=>10,
+        "limitPages"=>5,
         "page"=>$page      
     ]);
     $sql="SELECT * FROM guitars ";
     $sql.= "LIMIT ".$pag->GetFirstRow().", ". $pag->GetLimit();
     $rows = ($this->db)->queryRows($sql); 
+    $pagination= $pag->show();
+    $active = "?page=";
     ?>
-
+   
     <link rel="stylesheet" href="css/product.css">
     <div class="guitars">
-    <a class="pointer"><img src='/images/page/pointer_left.png'></a>
+    <a class="pointer" href=<?echo("?page=".($pag->GetActive()-1)."&");?>><img src='/images/page/pointer_left.png'></a>
         <div class="adminprod">
             <?php
     foreach($rows as $row)
@@ -43,8 +45,11 @@
             </div>
             <?php
      }
+     
     ?>
 
         </div>
-        <a class="pointer"><img src='/images/page/pointer_right.png'></a>
+        <a class="pointer" href=<?echo("?page=".($pag->GetActive()+1)."&");?>><img src='/images/page/pointer_right.png'></a>
     </div>
+    <?php
+    
