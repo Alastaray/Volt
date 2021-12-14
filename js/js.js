@@ -1,21 +1,28 @@
 "use strict"
 document.addEventListener("DOMContentLoaded", load);
+let dataSearch = {page:1};
 
 function load() {
-    let but_open_reg = document.getElementById('reg-logo');
-    but_open_reg.addEventListener("click", open_reg_form);//open_reg_form
-    let close_reg = document.getElementById('eclipse');
-    close_reg.addEventListener("click", close_reg_form);
+    document.getElementById('reg-logo').addEventListener("click", open_reg_form);//open_reg_form
+    document.getElementById('eclipse').addEventListener("click", close_reg_form);
 
-    let but_enter = document.getElementById('open_entering');
-    but_enter.addEventListener("click", open_enter);
-    let but_reg = document.getElementById('open_reg');
-    but_reg.addEventListener("click", open_reg);
+    document.getElementById('open_entering').addEventListener("click", open_enter);
+    document.getElementById('open_reg').addEventListener("click", open_reg);
 
-    let but_singup = document.getElementById('registered');
-    but_singup.addEventListener("click", SingUp);
-    let but_login = document.getElementById('enter');
-    but_login.addEventListener("click", LogIn);
+    document.getElementById('registered').addEventListener("click", SingUp);
+    document.getElementById('enter').addEventListener("click", LogIn);
+    
+    document.getElementById('search').addEventListener("keyup", Search);
+
+    document.getElementById('home').addEventListener("click", GoHome);
+    document.getElementById('guitars').addEventListener("click", getGuitars);
+    document.getElementById("adminprod").style.display = "none";
+    if(getCookie("auth"))document.getElementById("reg-logo").classList.add('auth');
+}
+
+function GoHome(){  
+    document.getElementById("bg").style.display = "flex";
+    document.getElementById("adminprod").style.display = "none";
 }
 
 function getCookie(name) {
@@ -23,9 +30,10 @@ function getCookie(name) {
       "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
     ));
     return matches ? decodeURIComponent(matches[1]) : undefined;
-  }
+}
+
 function sendRequest(options) {
-    var http;
+    let http;
     try {
         http = new XMLHttpRequest();
     } catch (e) {
@@ -54,7 +62,6 @@ function sendRequest(options) {
 
 function SingUp(e) {
     e.preventDefault();
-    console.log('start SingUp');
     let name = document.getElementById("name").value;
     let surname = document.getElementById("surname").value;
     let phone = document.getElementById("phone").value;
@@ -73,7 +80,6 @@ function SingUp(e) {
         }
     });
 }
-
 function Registration(http) {
     let json = JSON.parse(http.responseText);
     if (json.validate) {
@@ -126,10 +132,8 @@ function Registration(http) {
 }
 
 
-
 function LogIn(e) {
     e.preventDefault();
-    console.log('start LogIn');
     let email = document.getElementById("email_e").value;
     let password = document.getElementById("password_e").value;
     sendRequest({
@@ -145,7 +149,6 @@ function LogIn(e) {
         }
     });
 }
-
 function Entrance(http) {
     let json = JSON.parse(http.responseText);
     if (json.validate&&json.email&&json.password) {
@@ -175,28 +178,106 @@ function Entrance(http) {
 
 
 
+function htmlProducts(products) {
+    let prodBody = document.getElementById("adminprod");
+    let str ="";
+    if(products.rows.length){
+        str+="<div class='guitars'>";
+        if(dataSearch.page>=2)str+="<a class='pointer' onclick='getProducPage("+(dataSearch.page-1)+")' href='#" + (dataSearch.page-1) + "'><img src='/images/page/pointer_left.png'></a>";
+    }
+        
+    for (let i=0;i<products.rows.length;i++) {
+        str+="<div class='product'>"+
+        "<div class='card'>"+
+            "<div class='price'>"+
+            products.rows[i].price+" UAH</div>"+           
+            "<button class='more'>Подробнее</button>"+
+           " <img class='picture' src="+ products.rows[i].path+"> </div>"+      
+        "<div class='name'>"+ products.rows[i].name+"</div></div>";                      
+    }
+    if(products.rows.length){
+        if(dataSearch.page<products.pagination.pagecount)str+="<a class='pointer' onclick='getProducPage("+(dataSearch.page+1)+")' href='#" + (dataSearch.page+1) + "'><img src='/images/page/pointer_right.png'></a>";
+        str+="</div>";
+    }
+        
+    prodBody.innerHTML = str;
 
+    let pagination = document.getElementById("pag");
+    let limitPages = products.pagination.limit;
+    let page = products.pagination.page;
+    let pages =products.pagination.pagecount;
+    let first = page - Math.floor(limitPages/2);
+    if (first < 1) first = 1;
+    let last = first + limitPages-1;
+    if (last > pages) {
+        last = pages;
+        first = last - limitPages + 1;
+        if (first < 1) first = 1;
+    }
+    str ="";
+    if (first > 1) {
+        str += "<a onclick='getProducPage(1)' href='#1'>1</a>";
+        
+    }
+    if (first > 2) {
+        str += "<a onclick='getProducPage("+(first-1)+")' href='#" + (first-1) + "'>...</a>";
+    }
 
-function getProducts() {
-    console.log('start get products');
+    for (let i=first;i<=last;i++) {
+        if(dataSearch.page==i)str += "<a id='active' onclick='getProducPage("+i+")' href='#" + i + "'>"+i+"</a> ";
+        else str += "<a onclick='getProducPage("+i+")' href='#" + i + "'>"+i+"</a> ";
+    }
+
+    if (last < pages - 1) {
+        str += "<a onclick='getProducPage("+(last+1)+")' href='#" + (last+1) + "'>...</a>";
+    }
+    if (last <pages) {
+        str += "<a onclick='getProducPage("+pages+")' href='#"+pages+"'>"+pages+"</a>";
+        
+    }
+    pagination.innerHTML = str;
+}
+function getProducPage(page) {
+    dataSearch.page = page;
+    GetRows(dataSearch);
+}
+function GetRows(params) {
+    let str = '';
+    if (params) {
+        for (let key in params) {
+                str += encodeURIComponent(key) + "=" + encodeURIComponent(params[key]) + "&";
+        }
+    }
+    console.log(str);
     sendRequest({
         method: 'GET',
-        url: 'products.php',
-        contentType: "application/x-www-form-urlencoded",
-        data: "",
-        success: function (http) {
-            var products = JSON.parse(http.responseText);
-            var prodBody = document.getElementById("products");
-            str = "";
-            for (var i = 0; i < products.length; i++) {
-                str += "<tr><td>" + products[i].product_id + "</td><td>" + products[i].model + "</td></tr>"
-            }
-            prodBody.innerHTML = str;
+        url: '/views/pages/guitars.php?'+str,
+        success: function(http) {
+            let products = JSON.parse(http.responseText);
+            console.log(products.search);
+            htmlProducts(products);
         },
-        error: function (http) {
+        error: function(http) {
 
         }
     });
+}
+
+function getGuitars(e) {
+    document.getElementById("bg").style.display = "none";
+    document.getElementById("adminprod").style.display = "block";
+    e.preventDefault();
+    GetRows();
+}
+let old = '';
+function Search() {
+    let val = document.getElementById('search').value;
+    if (val != old){
+        dataSearch.search = val;
+        old=val;
+        GetRows(dataSearch);
+    }
+    
 }
 
 

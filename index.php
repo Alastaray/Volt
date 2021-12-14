@@ -1,14 +1,5 @@
 <?php
-require_once("include/db.php");
-require_once("include/app.php");
-require_once("include/pagination.php");
-
-(new App())->Run([
-    'db' => [
-        'host' => 'Volt',
-        'user' => 'root',
-        'password' => 'root',
-        'db' => 'volt'
-        ]
-]);
-
+require_once('views/header.php');
+require_once('views/body.php');
+require_once('views/footer.php');
+?>

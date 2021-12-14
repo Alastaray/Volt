@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/win_client_enter.css">
+    <link rel="stylesheet" href="css/product.css">
     <script defer src="js/js.js"></script>
 </head>
 
@@ -20,8 +21,8 @@
         </div>
         <nav class="nav">
             <ul class="menu">
-                <li><a href="/">Главная</a></li>
-                <li><a href="guitars">Гитары</a></li>
+                <li><a id="home" href="#">Главная</a></li>
+                <li><a id="guitars" href="#">Гитары</a></li>
                 <li><a href="#">Коммутация</a></li>
                 <li><a href="#">Звукозапись</a></li>
                 <li><a href="#">DJ оборудование</a></li>

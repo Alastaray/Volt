@@ -57,7 +57,7 @@ header>div{
 .auth{
     background-image: url('/images/page/auth.png');
 }
-.bg{
+#bg{
     position: relative;
     height: 55vh;
     background-color: black;
@@ -74,6 +74,12 @@ header>div{
     background-position: center center;
     background-repeat: no-repeat;
 }
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
 footer{
     position: fixed;
     bottom: 0;
@@ -86,21 +92,11 @@ footer .search{
     justify-content: space-between;
     align-items: center; 
 } 
-footer .search-panel{ 
-    margin-right: 50px;  
-}
-footer button{
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 20px;
-    border: 0;
-    background-color: black;
-    color: white;
-    height: 3vh;
-}
-footer button:hover{
-    background-color: white;
-    color: black;
+
+footer #search{
+    margin-right: 50px;
+    height: 3vh; 
+    width: 28vw;
 }
 .logo-min{
     width: 150px;
@@ -111,10 +107,10 @@ footer button:hover{
     background-repeat: no-repeat;
     margin-left: 50px;
 }
-footer .pag{
+footer #pag{
     margin-left: 30px;
 }
-footer .pag a{
+footer #pag a{
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: 18px;
@@ -124,11 +120,11 @@ footer .pag a{
     color: black;
     background-color: white;
 }
-footer .pag .active{
+footer #pag #active{
     color: white;
     background-color: black;
 }
-footer .pag a:hover{
+footer #pag a:hover{
     color: white;
     background-color: black;
 }

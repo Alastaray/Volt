@@ -1,70 +1,66 @@
-
-<?php
-    $rowscount=0;
-    $params=[];
-    if(isset($_REQUEST["search"]))$search = $_REQUEST["search"];
-    $sql_search = "";
-    if($search){
-        $sql_search.="WHERE `name` LIKE '".$search."%'"." OR ".
-             "`neck_material` LIKE '".$search."%'"." OR ".
-            "`price` = '".$search."' OR ".
-            "`scale` = '".$search."' OR ".
-            "`number_frets` = '".$search."' OR ".
-            "`number_strings` = '".$search."'";
-        $params["search"]=$search;
-    } 
-    $sql_count="SELECT COUNT(*) as 'count' FROM `guitars` ".$sql_search;
-  
-    $c=$this->db->queryOne($sql_count);
-    if($c)$rowscount=$c["count"];
-    $page=1;
-    if(isset($_REQUEST["page"])&&is_numeric($_REQUEST["page"])&&$_REQUEST["page"]>=1)$page=$_REQUEST["page"];
-    $limit=5;
-    $pag = new Pagination([       
-        "rows"=>$rowscount,
-        "limit"=>$limit,
-        "limitPages"=>5,
-        "page"=>$page,
-        "params"=>$params
+<?php 
+require_once("../../include/db.php");
+$db=new DB([ 'host'=> 'Volt',
+    'user'=> 'root',
+    'password'=> 'root',
+    'db'=> 'volt'
     ]);
-    $sql="SELECT * FROM guitars ".$sql_search;
-    $sql.= " LIMIT ".$pag->GetFirstRow().", ". $pag->GetLimit();
-    $rows = ($this->db)->queryRows($sql); 
-    $pagination= $pag->show();
-    $active = "?page=";
-    ?>
-   
-    <link rel="stylesheet" href="css/product.css">
-    <div class="guitars">
-    <a class="pointer" href=<?echo("?page=".($pag->GetActive()-1)."&");?>><img src='/images/page/pointer_left.png'></a>
-        <div class="adminprod">
-            <?php
-    foreach($rows as $row)
-     {
-        ?>
-            <div class="product">
-                <div class="card">
-                    <div class="price">
-                        <div>
-                            <?=$row["price"]." UAH"?>
-                        </div>
-                    </div>
-                    <button id="more">Подробнее</button>
-                    <img class="img" src=<?=$row["path"]?>>
-                </div>
-                <div class="name">
-                    <div>
-                        <?=$row["name"]?>
-                    </div>
-                </div>
-            </div>
-            <?php
-     }
-     
-    ?>
 
-        </div>
-        <a class="pointer" href=<?echo("?page=".($pag->GetActive()+1)."&");?>><img src='/images/page/pointer_right.png'></a>
-    </div>
-    <?php
-    
+
+
+
+
+
+
+$page=1;
+$limit=5;
+$rowscount=$c['count'];
+$rowscount=0;
+
+if(isset($_REQUEST["search"]))$search=$_REQUEST["search"];
+$sql_search="";
+
+if($search) {
+    $sql_search.="WHERE `name` LIKE '".$search."%'"." OR ".
+    "`neck_material` LIKE '".$search."%'"." OR ".
+   "`price` = '".$search."' OR ".
+   "`scale` = '".$search."' OR ".
+   "`number_frets` = '".$search."' OR ".
+   "`number_strings` = '".$search."'";
+}
+
+$sql_count="SELECT COUNT(*) as 'count' FROM `guitars` ".$sql_search;
+$c=$db->queryOne($sql_count);
+if($c)$rowscount=$c["count"];
+$pagecount=ceil($rowscount / $limit);
+$sql="SELECT * FROM guitars ".$sql_search;
+
+if (isset($_REQUEST['page']) && is_numeric($_REQUEST['page']) && $_REQUEST['page'] > 0) {
+    $page=(int)$_REQUEST['page'];
+}
+
+if ($page > $pagecount) $page=$pagecount;
+
+if ($rowscount > 0) {
+    $first=($page - 1) * $limit;
+    $sql.= " LIMIT ". $first . ",". $limit;
+    $rows=$db->queryRows($sql);
+}
+
+else {
+    $rows=[];
+}
+
+
+echo json_encode([ 
+    'pagination'=> [ 
+        'rowscount'=> (int)$rowscount,
+        'limit'=> $limit,
+        'page'=> $page,
+        'pagecount'=> $pagecount
+    ],
+    'search'=>$search,
+    'rows'=> $rows]);
+
+
+?>
