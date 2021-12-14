@@ -48,17 +48,13 @@
 .input{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 input{
     margin-top: 5px;
     height: 25px;
     width: 270px;
 }
-.showed_win img{
-    margin-right: 5px;
-    height: 3vh;
-}
-
 input, button{
     border: 2px solid black;
 }
@@ -132,6 +128,23 @@ input, button{
     color: black;
 }
 
+
+.error{
+    height: 3vh;
+    width: 3vw;
+    background-image: url('/images/page/wrong.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.success{
+    height: 3vh;
+    width: 3vw;
+    background-image: url('/images/page/right.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
 #entering{
     display: none;
     height: 37vh;

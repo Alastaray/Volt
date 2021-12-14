@@ -1,48 +1,69 @@
 <?php
+
+require_once("db.php");
+$db = new DB([
+    'host' => 'Volt',
+    'user' => 'root',
+    'password' => 'root',
+    'db' => 'volt'
+    ]);
+
 $reg_exps = [];
-//Name   
-$reg_exps[0] = '/^[а-яА-Яа-яА-ЯїЇіІa-zA-Z ]{2,30}$/';
-//Surname
-$reg_exps[1] = '/^[а-яА-Яа-яА-ЯїЇіІa-zA-Z ]{2,30}$/';
-//Phone
-$reg_exps[2] = '/^(050|066|067|098|097|096|068|039|063|093|099|095){1}[0-9]{7}$/';
-//Email
-$reg_exps[3] = '/^[a-zA-Z0-9.]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/';  
-//Password
-$reg_exps[4] = '/^[a-zA-Z0-9]{6,20}/';
+$reg_exps['name'] = '/^[а-яА-Яа-яА-ЯїЇіІa-zA-Z ]{2,30}$/';
+$reg_exps['surname'] = '/^[а-яА-Яа-яА-ЯїЇіІa-zA-Z ]{2,30}$/';
+$reg_exps['phone'] = '/^(050|066|067|098|097|096|068|039|063|093|099|095){1}[0-9]{7}$/';
+$reg_exps['email'] = '/^[a-zA-Z0-9.]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/';  
+$reg_exps['password'] = '/^[a-zA-Z0-9]{6,20}/';
 
-// if(!empty($_POST)){
-//     $inputs_name = ['name', 'surname', 'phone', 'email', 'password'];
-//     $errors=[];
-//     for($i=0; $i<5;$i++){
-//         if(!isset($_POST[$inputs_name[$i]])
-//         ||!trim($_POST[$inputs_name[$i]])
-//         ||!preg_match($reg_exps[$i],$_POST[$inputs_name[$i]])){
-//             $errors[$i]='';    
-//         }
-//         else{
-//             $errors[$i]=$inputs_name[$i];
-//         }
+$errors=[];
+$inputs_name = ['name', 'surname', 'phone', 'email', 'password'];
+$validate = true;
+if(!empty($_POST)){
+    foreach($inputs_name as $input){
+        if(!isset($_POST[$input])
+        ||!trim($_POST[$input])
+        ||!preg_match($reg_exps[$input],$_POST[$input])){
+            $errors[$input]=false; 
+            $validate=false;   
+        }
+        else{
+            $errors[$input]=true;
+        }
         
-//     } 
-// }
+    } 
+}
 
 
 
+$comma = ", ";
+$quote = "'";
+if($validate){
+    $sql = "INSERT INTO `users`(name,surname,phone,email,password) VALUES(";
+    foreach($inputs_name as $input){
+        if($input=="password")$sql .= $quote.$_POST[$input].$quote.")";
+        else $sql .= $quote.$_POST[$input].$quote.$comma;
+    }
+    $insert=$db->query($sql);
+
+
+    echo(json_encode([
+        "insert" => $insert,
+        "validate" => $validate
+    ]));
+}
+else{
+    echo(json_encode([
+        "name" => $errors["name"],
+        "surname" => $errors["surname"],
+        "phone" => $errors["phone"],
+        "email" => $errors["email"],
+        "password" => $errors["password"],
+        "validate" => $validate
+    ]));
+}
 
 
 
-
-
-
-echo(json_encode([
-    "name" => "a",
-    "surname" => "a",
-    "phone" => "a",
-    "email" => "a",
-    "password" => "a",
-    "validate" => true
-]));
 
 ?>
 

@@ -8,9 +8,8 @@
     <title>VOLT</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/showed_win.css">
-    <script defer src="js/show_win.js"></script>
-    <script defer src="js/ajax.js"></script>
+    <link rel="stylesheet" href="css/win_client_enter.css">
+    <script defer src="js/js.js"></script>
 </head>
 
 <body>
