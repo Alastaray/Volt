@@ -8,9 +8,9 @@
     <title>VOLT</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/reg.css">
-    <script defer src="js/js.js"></script>
-    <?require_once('include/validate.php');?>
+    <link rel="stylesheet" href="css/showed_win.css">
+    <script defer src="js/show_win.js"></script>
+    <script defer src="js/ajax.js"></script>
 </head>
 
 <body>

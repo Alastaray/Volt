@@ -1,36 +1,15 @@
 "use strict"
 document.addEventListener("DOMContentLoaded", load);
 
-function load() {
-    let but_open_reg= document.getElementById('reg-logo');
-    but_open_reg.addEventListener("click",open_reg_form);
-    let close_reg= document.getElementById('eclipse');
-    close_reg.addEventListener("click",close_reg_form);
 
+
+
+function load() {
     let but_reg = document.getElementById('registered');
     but_reg.addEventListener("click",SingUp);
 
     
 }
-
-function open_reg_form(){
-    let eclipse= document.getElementById('eclipse');
-    let register= document.getElementById('register');
-    if(register.style.display != "block"){
-        register.style.display = "block";
-        eclipse.style.display = "block";
-    }
-}
-function close_reg_form(){
-    let eclipse= document.getElementById('eclipse');
-    let register= document.getElementById('register');
-
-    if(register.style.display == "block"){
-        register.style.display = "none";
-        eclipse.style.display = "none";
-    }          
-}
-
 function sendRequest(options) {
     var http;
     try {
@@ -53,7 +32,14 @@ function sendRequest(options) {
             }
         }
     }
-    http.send();
+    if(options.data){
+        if(options.contentType){
+            http.setRequestHeader("Content-type",options.contentType);
+        }
+        http.send(options.data);
+    }
+    else http.send(options.data);
+    
 }
 
 function getProducts() {
@@ -61,6 +47,8 @@ function getProducts() {
     sendRequest({
         method: 'GET',
         url: 'products.php',
+        contentType: "application/x-www-form-urlencoded",
+        data: "",
         success: function(http) {
             var products = JSON.parse(http.responseText);
             var prodBody = document.getElementById("products");
@@ -76,6 +64,31 @@ function getProducts() {
     });
 }
 
-function SingUp(){
-    
+function Registration(http){
+
+}
+
+
+
+
+function SingUp(e){
+    e.preventDefault();
+    console.log('start SingUp');
+    let name = document.getElementById("name").value;
+    let surname = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    sendRequest({
+        method: 'POST',
+        url: '/include/validate.php',
+        contentType: "application/x-www-form-urlencoded",
+        data: "name="+name+"&"+"surname="+surname+"&"+"phone="+phone+"&"+"email="+email+"&"+"password="+password,
+        success: function(http) {
+            Registration(http);            
+        },
+        error: function(http) {
+
+        }
+    });
 }

@@ -11,21 +11,39 @@ $reg_exps[3] = '/^[a-zA-Z0-9.]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:
 //Password
 $reg_exps[4] = '/^[a-zA-Z0-9]{6,20}/';
 
-if(!empty($_POST)){
-    $inputs_name = ['name', 'surname', 'phone', 'email', 'password'];
-    $errors=[];
-    for($i=0; $i<5;$i++){
-        if(!isset($_POST[$inputs_name[$i]])
-        ||!trim($_POST[$inputs_name[$i]])
-        ||!preg_match($reg_exps[$i],$_POST[$inputs_name[$i]])){
-            $errors[$i]='';    
-        }
-        else{
-            $errors[$i]=$inputs_name[$i];
-        }
+// if(!empty($_POST)){
+//     $inputs_name = ['name', 'surname', 'phone', 'email', 'password'];
+//     $errors=[];
+//     for($i=0; $i<5;$i++){
+//         if(!isset($_POST[$inputs_name[$i]])
+//         ||!trim($_POST[$inputs_name[$i]])
+//         ||!preg_match($reg_exps[$i],$_POST[$inputs_name[$i]])){
+//             $errors[$i]='';    
+//         }
+//         else{
+//             $errors[$i]=$inputs_name[$i];
+//         }
         
-    } 
-}
+//     } 
+// }
+
+
+
+
+
+
+
+
+
+echo(json_encode([
+    "name" => "a",
+    "surname" => "a",
+    "phone" => "a",
+    "email" => "a",
+    "password" => "a",
+    "validate" => true
+]));
+
 ?>
 
 
