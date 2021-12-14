@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/reg.css">
-    <!-- <link rel="stylesheet" href="css/product.css"> -->
     <script defer src="js/js.js"></script>
     <?require_once('include/validate.php');?>
 </head>

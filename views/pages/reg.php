@@ -1,36 +1,43 @@
-        <section id="register" >
+        <?php
+        $path = "<img src='/images/page/"
+        ?>
+        <section id="register">
             <h1>Регистрация</h1>
             <form class="shape" method="POST">
                 <div class="form">
-                    <fieldset>
+                    <fieldset>                     
                         <legend>Имя</legend>
-                        <div class="input">                      
-                            <p class=<?php if($errors[0]!='')echo("success");else echo("error");?>></p>
-                             <input id="name" name="name" type="text">
-                        </div>                    
+                        <div class="input">
+                            <?php if($errors[0]!=''&&!isset($errors))echo($path."right.png'>");else echo($path."wrong.png'>");?></p>
+                            <input id="name" name="name" type="text">
+                        </div>
                     </fieldset>
                     <fieldset>
                         <legend>Фамилия</legend>
-                        <div class="input">                      
-                            <p class=<?php if($errors[1]!='')echo("success");else echo("error");?>></p><input id="surname" name="surname" type="text">
+                        <div class="input">
+                            <?php if($errors[1]!='')echo($path."right.png'>");else echo($path."wrong.png'>");?></p><input id="surname"
+                                name="surname" type="text">
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Номер телефона</legend>
-                        <div class="input">                      
-                            <p class=<?php if($errors[2]!='')echo("success");else echo("error");?>></p><input id="phone" name="phone" type="text" maxlength="10">
+                        <div class="input">
+                            <?php if($errors[2]!='')echo($path."right.png'>");else echo($path."wrong.png'>");?></p><input id="phone"
+                                name="phone" type="text" maxlength="10">
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Эл. почта</legend>
-                        <div class="input">                      
-                            <p class=<?php if($errors[3]!='')echo("success");else echo("error");?>></p><input id="email" name="email" type="text">
+                        <div class="input">
+                            <?php if($errors[3]!='')echo($path."right.png'>");else echo($path."wrong.png'>");?></p><input id="email"
+                                name="email" type="text">
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Пароль</legend>
-                        <div class="input">                      
-                            <p class=<?php if($errors[4]!='')echo("success");else echo("error");?>></p><input id="password" name="password" type="password">
+                        <div class="input">
+                            <?php if($errors[4]!='')echo($path."right.png'>");else echo($path."wrong.png'>");?></p><input id="password"
+                                name="password" type="password">
                         </div>
                     </fieldset>
                     <button id="registered">Зарегестрироваться</button><br>

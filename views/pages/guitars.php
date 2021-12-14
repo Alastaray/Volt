@@ -46,15 +46,15 @@
                 <div class="card">
                     <div class="price">
                         <div>
-                            <?echo($row["price"]." UAH")?>
+                            <?=$row["price"]." UAH"?>
                         </div>
                     </div>
                     <button id="more">Подробнее</button>
-                    <img class="img" src=<?echo($row["path"])?>>
+                    <img class="img" src=<?=$row["path"]?>>
                 </div>
                 <div class="name">
                     <div>
-                        <?echo($row["name"])?>
+                        <?=$row["name"]?>
                     </div>
                 </div>
             </div>
