@@ -17,7 +17,9 @@ $reg_exps['password'] = '/^[a-zA-Z0-9]{6,20}/';
 
 $errors=[];
 $inputs_name = ['name', 'surname', 'phone', 'email', 'password'];
+
 $validate = true;
+
 if(!empty($_POST)){
     foreach($inputs_name as $input){
         if(!isset($_POST[$input])
@@ -33,6 +35,20 @@ if(!empty($_POST)){
     } 
 }
 
+$issetphone=false;
+$issetemail=false;
+if($validate){
+    $sql = 'SELECT * FROM `users`';
+    $rows = $db->queryRows($sql);
+
+    foreach($rows as $row) {
+        if ($_POST['email'] == $row['email'] && $_POST['phone'] == $row['phone']) {
+            if ($_POST['email'] == $row['email'])$issetemail=true;
+            if ($_POST['phone'] == $row['phone'])$issetphone=true;
+            $validate=false;
+        }
+    }
+}
 
 
 $comma = ", ";
@@ -58,6 +74,8 @@ else{
         "phone" => $errors["phone"],
         "email" => $errors["email"],
         "password" => $errors["password"],
+        "issetphone"=> $issetemail,
+        "issetemail"=> $issetphone,
         "validate" => $validate
     ]));
 }
