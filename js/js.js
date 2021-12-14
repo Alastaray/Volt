@@ -81,6 +81,7 @@ function Registration(http) {
             alert("Регистрация успешная!");
             close_reg_form();
             document.cookie = "auth=1";
+            document.getElementById("reg-logo").classList.add('auth');
         } else {
             alert("Регистрация не успешная!");
         }
@@ -150,7 +151,8 @@ function Entrance(http) {
     if (json.validate&&json.email&&json.password) {
         alert("Вход успешнен!");
         close_reg_form();
-        document.cookie = "auth=1";        
+        document.cookie = "auth=1";  
+        document.getElementById("reg-logo").classList.add('auth');      
     } else {
         if (!json.email) {
             document.getElementById("validate_email").classList.remove('success');

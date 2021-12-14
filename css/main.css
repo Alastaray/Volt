@@ -43,7 +43,7 @@ header>div{
     background-color: white;
     color: black;
 }
-#reg-logo{
+.reg{
     background-color: black;
     width: 70px;
     height: 70px;
@@ -54,7 +54,9 @@ header>div{
     position: relative;
     bottom: 15px;
 }
-
+.auth{
+    background-image: url('/images/page/auth.png');
+}
 .bg{
     position: relative;
     height: 55vh;

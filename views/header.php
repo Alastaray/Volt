@@ -25,7 +25,7 @@
                 <li><a href="#">Коммутация</a></li>
                 <li><a href="#">Звукозапись</a></li>
                 <li><a href="#">DJ оборудование</a></li>
-                <button id="reg-logo"></button>
+                <button id="reg-logo" class="reg"></button>
             </ul>
         </nav>
     </header>
