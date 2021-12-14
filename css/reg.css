@@ -77,14 +77,18 @@ input, button{
     color:white;
 }
 
-#registered~a{
+#enter{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
     text-decoration: none;
+    border: none;
+    background-color: white;
     color: black;
     font-size: 15px;
     margin-left: 50px;
     padding: 1px;
 }
-#registered~a:hover{
+#enter:hover{
     text-decoration: underline;
 }
 .line{
@@ -108,14 +112,19 @@ input, button{
     width: 220px;
 }
 
-.google{
+.another-login{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 32px;
+    color: white;
+    margin-top: 8px;
+    margin-bottom: 8px;
     width: 220px;
     height: 40px;
     background-color: black;
+
 }
-.vk{
-    margin-top: 15px;
-    width: 220px;
-    height: 40px;
-    background-color: black;
+.another-login:hover{
+    background-color: white;
+    color: black;
 }

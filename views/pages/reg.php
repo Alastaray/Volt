@@ -41,7 +41,7 @@
                         </div>
                     </fieldset>
                     <button id="registered">Зарегестрироваться</button><br>
-                    <a href="#">Я уже зарегестрирован</a>
+                    <button id="enter">Я уже зарегестрирован</button><br>
                 </div>
                 <div class="line">
                     <div></div>
@@ -50,8 +50,8 @@
                 </div>
                 <div class="or">
                     <h2>Войти как пользователь</h2>
-                    <button class="google"></button>
-                    <button class="vk"></button>
+                    <button class="another-login">Google</button>
+                    <button class="another-login">VKontakte</button>
                 </div>
             </form>
         </section>
